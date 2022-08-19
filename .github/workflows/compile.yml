@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Compile using gfortran
+        run: |
+          gfortran -Wall -Wextra -std=f2008 -o merge_sun_tables merge_sun_tables.f90
+          gfortran -Wall -Wextra -std=f2008 -o merge_galaxy_wind_tables merge_galaxy_wind_tables.f90
