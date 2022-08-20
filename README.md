@@ -16,3 +16,17 @@ If another subdirecotry is chosen, then the filenmae code of the L2A processor n
 
 Option 2: The read routine read_rss_l1a.f90 of the L2A package of RSS-SMAP-Salinity-Processing-V5.0 can be easily changed to read diirectly from the small 
 sub-tables rather than the large merged tables.
+
+Reading and Writing Raw Binary Files with gfortran.
+In order to open raw binary files for read sequential access: 
+Rewrite: 
+open(unit=3,file=file_header,action='read',form='binary',status='old'). 
+To: 
+open(unit=3,file=file_header,action='read',form='unformatted',access='stream',status='old'). 
+
+In order to open raw binary files for write sequential access: 
+Rewrite: 
+open(unit=4,file=file_heder, action='write’,form='binary',  …). 
+To: 
+open(unit=4,file=file_header,action='write',form='unformatted',access='stream', …).
+
