@@ -15,8 +15,8 @@
     galaxy_file = 'galaxy_wind_tables_merged.dat'
     file_header = 'galaxy_subtables\galaxy_time_eia.dat'
 		
-    open(unit=4,file=galaxy_file,access='sequential',form='binary',action='write')
-	open(unit=3,file=file_header,action='read',form='binary',status='old')
+    open(unit=4,file=galaxy_file,access='stream',form='unformatted',action='write')
+	open(unit=3,file=file_header,action='read',access='stream',form='unformatted',status='old')
 	read(3)  time_galaxy,eia_galaxy
 	write(4) time_galaxy,eia_galaxy
 	close(3)
@@ -28,7 +28,7 @@
     
     write(file_split,1001) itab,icel
     1001 format('galaxy_subtables\galaxy_wind_subtable_itab_',i1.1,'_icel_',i3.3,'.dat')
-    open(unit=3,file=file_split,action='read',form='binary',status='old')
+    open(unit=3,file=file_split,action='read',access='stream',form='unformatted',status='old')
     do istokes=1,3
     do izang=1,nzang
     read(3) xbuf
